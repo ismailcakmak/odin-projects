@@ -56,8 +56,7 @@ function playRound(humanChoice) {
     
     //update points
     if (winner === 'draw') {
-        humanPoint += 1;
-        computerPoint += 1;
+        //no increase 
     }
     else   
         (winner === "human") ? humanPoint++ : computerPoint++;
