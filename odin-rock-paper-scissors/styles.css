@@ -1,0 +1,58 @@
+* {
+    margin:0px;
+    padding:0px;
+}
+
+body {
+    padding: 80px;
+}
+
+.point-container {
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid black;
+    padding-left: 300px;
+    gap : 50px;
+    
+}
+
+.point-container p {
+    padding: 20px;
+    font-size: large;
+    font-weight: 500;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.choice-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;         
+    width: 200px;       
+    gap:30px
+}
+
+button {
+    padding: 20px;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+
+.round-container {
+    display: flex;
+    border: 2px solid black;
+    justify-content: center;
+    padding: 10px;
+    font-size:large;
+    font-weight: bold;
+}
+
+
+

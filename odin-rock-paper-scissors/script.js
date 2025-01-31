@@ -1,7 +1,9 @@
-
 var humanPoint = 0;
 var computerPoint = 0;
-
+var roundPlayed = 0;
+var lastHumanChoice = null;
+var lastComputerChoice = null;
+var winOrDraw = null;
 
 function getComputerChoice() {
 
@@ -13,20 +15,6 @@ function getComputerChoice() {
     let computerChoice = availableChoices[getRandomInt(3)];
 
     return computerChoice;
-}
-
-function getHumanChoice() {
-
-    let humanChoice = null;
-    let isChoiceValid = false;
-
-    while (!isChoiceValid) {
-        humanChoice = prompt("What's your choice : rock, paper, scissors");
-        if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors')
-            isChoiceValid = true;
-    }
-    
-    return humanChoice;
 }
 
 function determineWinner(humanChoice, computerChoice) {
@@ -59,14 +47,10 @@ function determineWinner(humanChoice, computerChoice) {
     if (isThereAnyPaper & isThereAnyScissors) {
         return (humanChoice ==="scissors") ? "human" : "computer";
     }
-
-
-
 }
 
-function playRound() {
+function playRound(humanChoice) {
 
-    let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
     let winner = determineWinner(humanChoice,computerChoice);
     
@@ -79,21 +63,94 @@ function playRound() {
         (winner === "human") ? humanPoint++ : computerPoint++;
     
 
+    //global var
+    winOrDraw = winner;
+
     //congrat sentence
     let winnerSentence = (winner==='draw') ? "there is a draw" : `${winner} won this round!`;
     winnerSentence += `\n Human : ${humanPoint} vs Computer : ${computerPoint}`;
     console.log(winnerSentence);
-    alert(winnerSentence);
+    roundPlayed++;
 
+    lastComputerChoice = computerChoice;
+    lastHumanChoice = humanChoice;
+    changeDom();
+}
+
+function changeDom(){
+
+    /* change round counter */
+    roundCounter = document.querySelector(".round");
+    roundCounter.textContent = "Round : " + String(roundPlayed);
+
+    /* change human and computer score */
+    humanPointElement = document.querySelector(".human-point");
+    computerPointElement = document.querySelector(".computer-point");
+
+    humanPointElement.textContent = "Human Score : " + String(humanPoint);
+    computerPointElement.textContent = "Computer Score : " + String(computerPoint);
+
+    if (winOrDraw==="human") {
+        humanPointElement.style.color = "green";
+        computerPointElement.style.color="red";
+    }
+    else if (winOrDraw==="computer") {
+        humanPointElement.style.color = "red";
+        computerPointElement.style.color="green";
+    }
+    else {
+        humanPointElement.style.color = "orange";
+        computerPointElement.style.color="orange";
+    }
+
+    /* change rock-paper-scissors images */
+    humanMoveImage = document.querySelector(".human-move-image");
+    computerMoveImage = document.querySelector(".computer-move-image");
+
+    switch(lastHumanChoice){
+        case "rock":
+            humanMoveImage.setAttribute("src", "./images/rock.svg")
+            break;
+        case "paper":
+            humanMoveImage.setAttribute("src", "./images/paper.svg")
+            break;
+        case "scissors":
+            humanMoveImage.setAttribute("src", "./images/scissors.svg")
+            break;
+    }
+
+    switch(lastComputerChoice){
+        case "rock":
+            computerMoveImage.setAttribute("src", "./images/rock.svg")
+            break;
+        case "paper":
+            computerMoveImage.setAttribute("src", "./images/paper.svg")
+            break;
+        case "scissors":
+            computerMoveImage.setAttribute("src", "./images/scissors.svg")
+            break;
+    }
 
 
 }
 
-
 function main() {
 
-    while(true)     
-        playRound();
+    const btnRock = document.querySelector(".btn-rock");
+    const btnPaper = document.querySelector(".btn-paper");
+    const btnScissors = document.querySelector(".btn-scissors");
+
+    btnRock.addEventListener("click", ()=>{
+        playRound("rock");
+    });
+
+    btnPaper.addEventListener("click", ()=>{
+        playRound("paper");
+    });
+
+    btnScissors.addEventListener("click", ()=>{
+        playRound("scissors");
+    });     
     
 }
 

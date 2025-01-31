@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <script src="./script.js"></script>    
+    <div>
+        <div class="point-container">
+            <p class="human-point">Human Score : 0</p>
+            <p class="computer-point">Computer Score : 0</p>
+        </div>
+        <div class="content-container">
+            <div class="choice-container">
+                <button class="btn btn-rock">rock</button>
+                <button class="btn btn-paper">paper</button>
+                <button class="btn btn-scissors">scissors</button>
+            </div>
+            <img class = "human-move-image" src="./images/paper.svg" alt="human">
+            <img class = "computer-move-image" src="./images/rock.svg" alt="computer">
+        </div>
+        <div class="round-container">
+            <p class="round">Round : 0</p>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>
