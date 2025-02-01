@@ -16,16 +16,16 @@ body {
     width: 500px;
     border: 5px solid black;
     padding: 1px;
-
 }
 
 .tile {
     height: 28.43px;
     width: 28.43px;
-    background-color: blue;    
+    background-color: white;    
+    outline: 0.5px solid darkgray;
 }
 
 
 .hovered-tile {
-    background-color: red;    
+    background-color: paleturquoise;    
 }

@@ -27,31 +27,23 @@ function hoveringEffect(tile){
     tile.classList.add("hovered-tile");
 }
 
-function calculateTileDim(totalGridwidht,tileNumbySide, gapBtwTiles) {
+function calculateTileDim(totalGridwidht,tileNumbySide) {
 
-    let totalTileWidhtBySide = totalGridwidht-((tileNumbySide-1)*gapBtwTiles)
-    let onetileWidht = totalTileWidhtBySide/tileNumbySide;
+    let onetileWidht = totalGridwidht/tileNumbySide;
 
     return onetileWidht
 }
 
-function calculateGapBtwTiles(tileNumbySide){
-    gapBtwTiles = (tileNumbySide>50) ? 0.5 : 1;
-    return gapBtwTiles;
-}
-
 function main() {
 
+    /* parameters */
     const totalGridwidht = 500;
-    const tileNumbySide = 30; //this means there will be 16x16 of grid
+    const tileNumbySide = 34;
 
-    const gapBtwTiles = calculateGapBtwTiles(tileNumbySide);
-
-
-    const tileDimension = calculateTileDim(totalGridwidht, tileNumbySide, gapBtwTiles);
-    
+    /** this is the main container we are going to add the tiles*/
     const container = document.querySelector(".container");
-    container.style.gap = `${gapBtwTiles}px`;
+
+    const tileDimension = calculateTileDim(totalGridwidht, tileNumbySide);
     createGrid(container, tileNumbySide, tileDimension); //this always add to .container div 
     applyHoveringEffect(hoveringEffect);
 
