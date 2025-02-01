@@ -1,5 +1,7 @@
 # Etch-a-Sketch
 
+You can try it out here: https://ismailcakmak.github.io/odin-projects/odin-sketch-pad/
+
 ## Overview
 A browser-based Etch-a-Sketch tool to practice DOM manipulation with JavaScript and CSS. It features a grid of squares that change color when hovered over, simulating a drawing experience.
 
