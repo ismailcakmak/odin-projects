@@ -13,9 +13,9 @@ function createGrid(container, tileNumbySide, tileDimension) {
 }
 
 
-function applyHoveringEffect(hoveringEffect){
+function applyHoveringEffect(container, hoveringEffect){
 
-    const tileList = document.querySelectorAll(".container div");
+    const tileList = container.querySelectorAll("div");
 
     tileList.forEach((tile)=>{
         tile.addEventListener("mouseover", () => {hoveringEffect(tile);
@@ -27,25 +27,22 @@ function hoveringEffect(tile){
     tile.classList.add("hovered-tile");
 }
 
-function calculateTileDim(totalGridwidht,tileNumbySide) {
-
+function calculateTileDim(totalGridwidht,tileNumbySide, gapBtwTiles) {
     let onetileWidht = totalGridwidht/tileNumbySide;
-
     return onetileWidht
 }
 
+
 function main() {
 
-    /* parameters */
     const totalGridwidht = 500;
-    const tileNumbySide = 34;
+    const tileNumbySide = 10; //this means there will be 16x16 of grid
 
-    /** this is the main container we are going to add the tiles*/
+
     const container = document.querySelector(".container");
-
     const tileDimension = calculateTileDim(totalGridwidht, tileNumbySide);
-    createGrid(container, tileNumbySide, tileDimension); //this always add to .container div 
-    applyHoveringEffect(hoveringEffect);
+    createGrid(container, tileNumbySide, tileDimension);
+    applyHoveringEffect(container, hoveringEffect);
 
 }
 

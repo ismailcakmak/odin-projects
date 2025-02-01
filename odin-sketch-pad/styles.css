@@ -14,18 +14,16 @@ body {
     flex-wrap: wrap;
     height: 500px;
     width: 500px;
-    border: 5px solid black;
-    padding: 1px;
+    border: 3px solid black;
 }
 
 .tile {
     height: 28.43px;
     width: 28.43px;
-    background-color: white;    
-    outline: 0.5px solid darkgray;
-}
-
+    background-color: white;  
+    outline: 0.5px solid dimgray;  
+}   
 
 .hovered-tile {
-    background-color: paleturquoise;    
+    background-color: orange;    
 }
