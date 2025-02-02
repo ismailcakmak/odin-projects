@@ -1,0 +1,44 @@
+* {
+    margin:0px;
+    padding:0px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    width: 340px;
+    background-color: blue;
+    padding: 10px
+}
+
+.screen {
+    display: flex;
+    background-color: bisque;
+    height: 100px;
+    width: 340px;
+    outline: 1.5px solid black;
+    justify-content: right;
+    align-items: center;
+    font-size: 50px;
+}
+
+.buttonpad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    height: 85px;
+    width: 85px;
+    outline: 1.5px solid black;
+    font-size: large;
+    border-radius: 0px;
+}
+
+.zero{
+    width: 170px;
+}
