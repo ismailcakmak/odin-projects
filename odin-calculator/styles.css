@@ -3,12 +3,20 @@
     padding:0px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: whitesmoke;
+}
+
 .calculator {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 100px;
     width: 350px;
     background-color: gainsboro;
     border: 3px solid black;
@@ -19,7 +27,7 @@
 .screen {
     display: flex;
     background-color: bisque;
-    height: 100px;
+    height: 80px;
     width: 350px;
     outline: 3px solid black;
     justify-content: right;

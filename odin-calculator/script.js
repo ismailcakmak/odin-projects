@@ -1,8 +1,5 @@
 
 
-
-
-
 const state = {
     leftOperand : "0",
     operator : null,
