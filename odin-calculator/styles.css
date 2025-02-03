@@ -3,6 +3,10 @@
     padding:0px;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -10,7 +14,6 @@
     align-items: center;
     gap: 10px;
     padding-top: 10px;
-    background-color: whitesmoke;
 }
 
 .calculator {
