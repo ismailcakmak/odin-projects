@@ -3,7 +3,7 @@
     padding:0px;
 }
 
-body {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
