@@ -90,7 +90,7 @@ function calculate(){
     }
 
     let strLeftOperand = String(leftOperand);
-    
+
     //limit only 3 char after dot
     if(strLeftOperand.includes(".") & (strLeftOperand.length - strLeftOperand.indexOf("."))>4)
         strLeftOperand = strLeftOperand.slice(0,strLeftOperand.indexOf(".")+4) 
@@ -255,11 +255,17 @@ function runCalculator(){
 
 function main(){
 
+    /** fav audio of Bilgehan ;) */
+    const clickSound = new Audio('./audios/3.wav');
+
     /** event listeners */
     const buttons = document.querySelectorAll(".btn");
     console.log("acme here");
     buttons.forEach((button)=> {
         button.addEventListener("click", (event)=>{
+            //adding sound effect
+            clickSound.play();
+
             currentInput = event.target.textContent;
             runCalculator();
             console.log(currentInput);

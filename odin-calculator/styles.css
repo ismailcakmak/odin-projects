@@ -25,6 +25,8 @@
     justify-content: right;
     align-items: center;
     font-size: 50px;
+    box-sizing:border-box;
+    padding: 5px;
 }
 
 .buttonpad {
