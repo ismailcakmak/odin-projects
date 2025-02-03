@@ -89,9 +89,17 @@ function calculate(){
             break;
     }
 
-    state.leftOperand = String(leftOperand);
+    let strLeftOperand = String(leftOperand);
+    
+    //limit only 3 char after dot
+    if(strLeftOperand.includes(".") & (strLeftOperand.length - strLeftOperand.indexOf("."))>4)
+        strLeftOperand = strLeftOperand.slice(0,strLeftOperand.indexOf(".")+4) 
+
+    state.leftOperand = strLeftOperand;
     state.operator = null;
     state.rightOperand = null;
+
+
 }
 
 function updateState(stateType, inputType){
@@ -156,7 +164,7 @@ function updateState(stateType, inputType){
 
             case "+/-":
                 break;
-
+                
             case ".":
                 break;
             
