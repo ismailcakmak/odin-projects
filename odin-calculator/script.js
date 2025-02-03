@@ -7,6 +7,12 @@ const state = {
 } 
 
 let currentInput = null;
+let navigator = null;
+let rightCursor = 0;
+let leftCursor = 0;
+
+const maxDisplayLenght = 13;
+
 
 /*
 
@@ -95,7 +101,6 @@ function calculate(){
     state.leftOperand = strLeftOperand;
     state.operator = null;
     state.rightOperand = null;
-
 
 }
 
@@ -213,29 +218,55 @@ function updateState(stateType, inputType){
 
 
 function display(){
-    const screen = document.querySelector(".screen");
+    const screen = document.querySelector(".screen .number");
+    let stateType = getStateType(); 
 
     let textContent = null;
-    let stateType = getStateType(); 
 
     switch (stateType) {
 
         case "state1":
             textContent = `${state.leftOperand}`;
+            doShiftIfNeeded();
             break;
 
         case "state2":
-            textContent = `${state.leftOperand} ${state.operator}`;
+            textContent = `${state.leftOperand}${state.operator}`;
+            doShiftIfNeeded();
             break;
 
         case "state3":
-            textContent = `${state.leftOperand} ${state.operator} ${state.rightOperand}`;
+            textContent = `${state.leftOperand}${state.operator}${state.rightOperand}`;
+            doShiftIfNeeded();    
             break;
 
         default:
             break;
     }
 
+    function doShiftIfNeeded(){ 
+
+        if(navigator==="goRight"){
+            (rightCursor<textContent.length) ? rightCursor++ : rightCursor=textContent.length;
+            (rightCursor>maxDisplayLenght) ? leftCursor=rightCursor-maxDisplayLenght : leftCursor=0;
+        }
+
+        else if(navigator==="goLeft"){
+            (leftCursor>0) ? leftCursor-- : leftCursor=0;
+            (rightCursor>maxDisplayLenght+leftCursor) ? rightCursor-- : rightCursor;
+
+        }
+        
+        else {
+            rightCursor = textContent.length;
+            leftCursor = (rightCursor>maxDisplayLenght) ? rightCursor-maxDisplayLenght : 0;
+        }
+    }
+
+
+    textContent = textContent.slice(leftCursor,rightCursor);
+
+    navigator = null;
     screen.textContent = textContent;
 
 }
@@ -246,14 +277,26 @@ function runCalculator(){
     let inputType = getInputType();
     
     updateState(stateType, inputType);
+
     console.log(`state type : ${getStateType()}`);
     display();
+    navigator = null;
 }
 
 function main(){
 
     /** fav audio of Bilgehan ;) */
     const clickSound = new Audio('./audios/3.wav');
+
+
+    document.querySelector(".forward").addEventListener("click",(event)=>{
+        navigator = "goRight";
+    });
+
+    document.querySelector(".backwards").addEventListener("click", (event)=>{
+        navigator = "goLeft";
+    });
+
 
     /** event listeners */
     const buttons = document.querySelectorAll(".btn");
@@ -268,6 +311,11 @@ function main(){
             console.log(currentInput);
         });
     });
+
+
+
+
+
 
 }
 

@@ -30,15 +30,25 @@ body {
 
 .screen {
     display: flex;
+    flex-direction: column;
     background-color: bisque;
     height: 80px;
     width: 350px;
     outline: 3px solid black;
-    justify-content: right;
-    align-items: center;
-    font-size: 50px;
+    justify-content: center;
+    align-items: flex-end;
     box-sizing:border-box;
-    padding: 5px;
+    padding: 10px;
+}
+
+.screen .number {
+    font-size: 50px;
+}
+
+.screen .arrow {
+    align-self: flex-start;
+    font-size: 10px;
+    /**outline: 1px solid black;*/
 }
 
 .buttonpad {
@@ -81,3 +91,15 @@ body {
 .zero{
     width: 170px;
 }
+
+.navigate {
+    display: flex;
+    gap: 10px;
+}
+
+.forward, .backwards {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+}
+
