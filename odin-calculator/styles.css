@@ -9,17 +9,19 @@
     justify-content: center;
     align-items: center;
     margin: 100px;
-    width: 340px;
-    background-color: blue;
-    padding: 10px
+    width: 350px;
+    background-color: gainsboro;
+    border: 3px solid black;
+    padding: 10px;
+    gap: 10px;
 }
 
 .screen {
     display: flex;
     background-color: bisque;
     height: 100px;
-    width: 340px;
-    outline: 1.5px solid black;
+    width: 350px;
+    outline: 3px solid black;
     justify-content: right;
     align-items: center;
     font-size: 50px;
@@ -29,15 +31,38 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
 }
 
 .btn {
-    height: 85px;
-    width: 85px;
+    height: 80px;
+    width: 80px;
     outline: 1.5px solid black;
     font-size: large;
     border-radius: 0px;
+    background-color: white;
+    box-shadow: 0 9px #999;
+    transition: all 0.3s ease-in-out;
+
 }
+
+.AC {
+    background-color: rgb(245, 91, 91);
+}
+
+.plusminus, 
+.modulus, .divider,
+.multiply, .minus, 
+.plus, .equals {
+    background-color: darkgrey;
+} 
+
+
+.btn:active {
+    background-color: white;
+    box-shadow: 2px 5px #666;
+    transform: translateY(2px)
+  }
 
 .zero{
     width: 170px;
