@@ -1,0 +1,115 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container, .rightside, .leftside{
+    display: flex;
+}
+
+/*Container*/
+.container {
+    padding: 1em 5em;
+}
+
+
+
+/* Left Side */
+
+.leftside, img {
+    border-radius: 1em;
+}
+
+.leftside {
+    width: 40%;
+}
+
+img {
+    display: inline-block;
+    width: 90%;
+}
+
+
+/*Right Side */
+
+.rightside {
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    width: 60%;
+    gap: 4em;
+    padding: 2em 3em;
+}
+
+.preform {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    font-size: 1.2em;
+}
+
+.preform .header {
+    font-size: 40px;
+}
+
+.preform .boldtext {
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+form p {
+    font-size: large;
+    font-weight: bold;
+}
+
+.form-row {
+    display: flex;
+    gap: 5em;
+}
+
+.form-row div {
+    display: flex;
+    flex-direction: column; 
+    font-size: large;
+    gap: 0.3em;
+}
+
+input {
+    padding: 0.8em;
+    width: 30vh;
+    border-radius: 0.5em;
+    border: 1px solid burlywood;
+}
+
+.submit-btn {
+    padding: 0.8em;
+    background-color: rgb(235, 206, 169);
+    border: 0.2px solid black;
+    border-radius: 0.5em; 
+    font-size: medium;
+    box-shadow: 0 2px #999;
+}
+
+.checkbox {
+    gap: 5px;
+    justify-content: flex-start;
+    font-size: small;
+
+}
+
+input[type="checkbox"] {
+    padding: 0px;
+    width: auto;
+}
+
+.postform {
+    
+}
+
