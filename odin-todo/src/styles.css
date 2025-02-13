@@ -1,0 +1,41 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red-color : rgb(246, 61, 61);
+    --button-color : rgb(219, 174, 174);
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: end;
+    align-items: center ; 
+    background-color: var(--red-color);
+    height: 40px;
+    padding: 1em 1em;
+}
+
+.header .add-todo-button {
+    background-color: var(--red-color);
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    padding: 0 0.3em;
+}
+
+.header .add-todo-button:hover {
+    background-color: rgb(252, 144, 144);
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    padding: 0 0.3em;
+}
+
+/*CONTAINER*/
+.container {
+    background-color: white;
+}
