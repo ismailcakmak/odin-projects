@@ -38,4 +38,33 @@
 /*CONTAINER*/
 .container {
     background-color: white;
+    padding: 10px;
+}
+
+/*TODO Container*/
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Single Todo item*/
+.todo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer-part {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.timer-btn {
+    padding: 5px;
+    border-radius: 16px;
+    border: none;
+    background-color: aquamarine;
 }
