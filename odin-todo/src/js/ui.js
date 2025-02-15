@@ -1,126 +1,123 @@
-
-function openToDoForm() {
-
-    return new Promise((resolve)=>{
-
-        
-        // Create the form element
-        const form = document.createElement('form');
-        form.setAttribute('id', 'todoForm');
-        
-        // Create Title input
-        const titleLabel = document.createElement('label');
-        titleLabel.setAttribute('for', 'title');
-        titleLabel.textContent = 'Title:';
-        const titleInput = document.createElement('input');
-        titleInput.setAttribute('type', 'text');
-        titleInput.setAttribute('id', 'title');
-        titleInput.setAttribute('name', 'title');
-        titleInput.setAttribute('required', true);
-        
-        // Create Description input
-        const descriptionLabel = document.createElement('label');
-        descriptionLabel.setAttribute('for', 'description');
-        descriptionLabel.textContent = 'Description:';
-        const descriptionInput = document.createElement('textarea');
-        descriptionInput.setAttribute('id', 'description');
-        descriptionInput.setAttribute('name', 'description');
-        
-        // Create Date input
-        const dateLabel = document.createElement('label');
-        dateLabel.setAttribute('for', 'date');
-        dateLabel.textContent = 'Date:';
-        const dateInput = document.createElement('input');
-        dateInput.setAttribute('type', 'date');
-        dateInput.setAttribute('id', 'date');
-        dateInput.setAttribute('name', 'date');
-        dateInput.setAttribute('required', true);
-        
-        // Create Estimated Time input
-        const timeLabel = document.createElement('label');
-        timeLabel.setAttribute('for', 'estimatedTime');
-        timeLabel.textContent = 'Estimated Time (hours):';
-        const timeInput = document.createElement('input');
-        timeInput.setAttribute('type', 'number');
-        timeInput.setAttribute('id', 'estimatedTime');
-        timeInput.setAttribute('name', 'estimatedTime');
-        timeInput.setAttribute('min', '0');
-        timeInput.setAttribute('required', true);
-        
-        // Create Submit button
-        const submitButton = document.createElement('button');
-        submitButton.setAttribute('type', 'submit');
-        submitButton.textContent = 'Add Task';
-        
-        // Append all the elements to the form
-        form.appendChild(titleLabel);
-        form.appendChild(titleInput);
-        form.appendChild(document.createElement('br')); // line break
-        form.appendChild(descriptionLabel);
-        form.appendChild(descriptionInput);
-        form.appendChild(document.createElement('br')); // line break
-        form.appendChild(dateLabel);
-        form.appendChild(dateInput);
-        form.appendChild(document.createElement('br')); // line break
-        form.appendChild(timeLabel);
-        form.appendChild(timeInput);
-        form.appendChild(document.createElement('br')); // line break
-        form.appendChild(submitButton);
-        
-        // Append the form to the DOM
-        const container = document.querySelector('.container');
-        container.appendChild(form);
-        
-        // Optionally, handle form submission
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const task = {
-                title: titleInput.value,
-                description: descriptionInput.value,
-                date: dateInput.value,
-                estimatedTime: timeInput.value,
-            };
+class UI {
+    
+    static openToDoForm() {
+        return new Promise((resolve) => {
+            // Create the form element
+            const form = document.createElement('form');
+            form.setAttribute('class', 'todo-form');
             
-            // Displaying task details in the console (you can modify this to do something else)
-            console.log('New Task:', task);
-            
-            // Optionally, show a confirmation message
-            alert(`Task Added: \nTitle: ${task.title}\nDescription: ${task.description}\nDate: ${task.date}\nEstimated Time: ${task.estimatedTime} hours`);
-            
-            // Remove the form from the DOM
-            container.removeChild(form);
-            
-            resolve(task);
+            // Set the inner HTML of the form
+            form.innerHTML = `
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                    <br>
+                    
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description"></textarea>
+                    <br>
+                    
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    <br>
+                    
+                    <label for="estimatedTime">Estimated Time (hours):</label>
+                    <input type="number" id="estimatedTime" name="estimatedTime" min="0" required>
+                    <br>
+                    
+                    <button type="submit">Add Task</button>
+                </div>`;
+
+            // Append the form to the DOM
+            const root = document.querySelector('html');
+            root.appendChild(form);
+
+            // Handle form submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const task = {
+                    title: form.querySelector('#title').value,
+                    description: form.querySelector('#description').value,
+                    date: form.querySelector('#date').value,
+                    estimatedTime: form.querySelector('#estimatedTime').value,
+                };
+                
+                console.log('New Task:', task);
+                root.removeChild(form);
+                resolve(task);
+            });
         });
-        
-    });
-}
-
-
-function createTodo(){
-    const todo = document.createElement('div');
-    todo.classList.add('todo');
-    todo.innerHTML = `<h2>${title}</h2> <p>${description}</p> <p>${date}</p> <p>${estimatedTime}</p>`;
-    return todo;
-}
-
-function displayTodos(todoList) {
-
-    const todoContainer = document.querySelector(".todo-container");
-
-    // Clear the todo container
-    while(todoContainer.firstChild(".todo")){
-        const firstChild = todoContainer.firstChild(".todo");
-        todoContainer.removeChild(firstChild);
     }
 
-    // Append todos to the todo container
-    todoList.forEach((element) => {
-        const todo = createTodo(element);
-        todoContainer.appendChild(todo);
-    });
+    static createTodoDom(element) {
+        const todo = document.createElement('div');
+        todo.innerHTML = `                
+            <div class="todo">
+                <div class="todo-content">
+                    <p class="title"> ${element.title} </p>
+                    <!-- <p class="description">this is the description</p>-->
+                    </div>
+                <div class="todo-timer"> ${element.remainingTime} </div>
+            </div>`;
+        return todo;
+    }
 
+    static createTodoDomList(todoList) {
+        return todoList.getTodos().map((todo) => this.createTodoDom(todo));
+    }
+
+    static renderTodoList(todoList) {
+        // Don't reassign the parameter
+        const todos = todoList.getTodos();
+        const todoContainer = document.querySelector(".todo-container");
+
+        // Clear the todo container
+        while(todoContainer.firstChild) {
+            todoContainer.removeChild(todoContainer.firstChild);
+        }
+        
+        //get dom todo list from todo list
+        const todoDomList = this.createTodoDomList(todoList);
+
+        //apply timer callback for todo doms
+        this.applyTodoTimerCallback(todos, todoDomList);
+
+        //append todo doms to DOM
+        todoDomList.forEach((todoDom) => {
+            todoContainer.appendChild(todoDom);
+        });
+    }
+
+    static applyAddTodoCallback(todoList) {
+        const addTodoButton = document.querySelector(".add-todo-button");
+        addTodoButton.addEventListener("click", () => {
+            this.openToDoForm().then((task) => {
+                todoList.add(
+                    task.title,
+                    task.description,
+                    task.date,
+                    task.estimatedTime
+                );
+                this.renderTodoList(todoList);
+            });
+        });
+    }
+
+    static applyTodoTimerCallback(todoList, todoDomList) {
+        todoDomList.forEach((todoDom, index) => {
+            const todoTimer = todoDom.querySelector(".todo-timer");
+            todoTimer.addEventListener("click", () => {
+                const timer = todoList[index].timer;
+                if(timer.getTimerStatus()) {
+                    timer.stop();
+                } else {
+                    timer.start();
+                }
+                this.renderTodoList(todoList);
+            });
+        });
+    }
 }
 
-export {openToDoForm, displayTodos};
+export default UI;
