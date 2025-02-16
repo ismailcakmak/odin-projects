@@ -127,7 +127,7 @@
 }
 
 /* Todays Todo text*/
-.todo-container > p {
+.content > p {
     align-self: flex-start;
     font-size: larger;
     font-weight: bold;

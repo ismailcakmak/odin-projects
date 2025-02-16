@@ -49,75 +49,22 @@ class UI {
             });
         });
     }
+    
+    static renderTodoList(todoDomList) {
 
-    static createTodoDom(element) {
-        const todo = document.createElement('div');
-        todo.innerHTML = `                
-            <div class="todo">
-                <div class="todo-content">
-                    <p class="title"> ${element.title} </p>
-                    <!-- <p class="description">this is the description</p>-->
-                    </div>
-                <div class="todo-timer"> ${element.remainingTime} </div>
-            </div>`;
-        return todo;
-    }
-
-    static createTodoDomList(todoList) {
-        return todoList.getTodos().map((todo) => this.createTodoDom(todo));
-    }
-
-    static renderTodoList(todoList) {
-        // Don't reassign the parameter
-        const todos = todoList.getTodos();
         const todoContainer = document.querySelector(".todo-container");
 
         // Clear the todo container
         while(todoContainer.firstChild) {
             todoContainer.removeChild(todoContainer.firstChild);
         }
-        
-        //get dom todo list from todo list
-        const todoDomList = this.createTodoDomList(todoList);
-
-        //apply timer callback for todo doms
-        this.applyTodoTimerCallback(todos, todoDomList);
 
         //append todo doms to DOM
         todoDomList.forEach((todoDom) => {
             todoContainer.appendChild(todoDom);
         });
     }
-
-    static applyAddTodoCallback(todoList) {
-        const addTodoButton = document.querySelector(".add-todo-button");
-        addTodoButton.addEventListener("click", () => {
-            this.openToDoForm().then((task) => {
-                todoList.add(
-                    task.title,
-                    task.description,
-                    task.date,
-                    task.estimatedTime
-                );
-                this.renderTodoList(todoList);
-            });
-        });
-    }
-
-    static applyTodoTimerCallback(todoList, todoDomList) {
-        todoDomList.forEach((todoDom, index) => {
-            const todoTimer = todoDom.querySelector(".todo-timer");
-            todoTimer.addEventListener("click", () => {
-                const timer = todoList[index].timer;
-                if(timer.getTimerStatus()) {
-                    timer.stop();
-                } else {
-                    timer.start();
-                }
-                this.renderTodoList(todoList);
-            });
-        });
-    }
+    
 }
 
 export default UI;
